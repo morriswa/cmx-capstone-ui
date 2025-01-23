@@ -1,0 +1,24 @@
+@use "src/styles/variables" as *;
+
+
+.mobile-menu-link {
+  background-color: $neutral-color;
+  color: $black;
+  font-weight: bold;
+  padding: 16px;
+  text-decoration: none;
+  font-size: $font-size-med;
+  border: none;
+  outline: none;
+  width: 100%;
+
+  &.active {
+    background-color: $primary-color;
+    color: $white;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $text-color;
+  }
+}
