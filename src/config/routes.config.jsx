@@ -5,6 +5,7 @@ import {createBrowserRouter} from "react-router-dom";
 // components
 import Callback from "src/components/callback/Callback.component";
 import Layout from "src/components/layout/Layout.component";
+import {ServiceGuard} from "src/components/guards";
 
 // pages
 import Home from "src/pages/home/Home.page";
@@ -27,9 +28,9 @@ const router = createBrowserRouter([
   },
   // config for page layout of header/body/etc
   {
-    id: "with-header",
+    id: "application",
     path: "",
-    element: <Layout />,
+    element: <ServiceGuard><Layout /></ServiceGuard>,
     children: [
       // pages with header
       {

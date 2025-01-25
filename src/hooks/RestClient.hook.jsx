@@ -40,7 +40,15 @@ class RestClient {
 
 
   async getPermissions() {
-    throw new Error("Not implemented")
+    return jsonHttp(`${this._baseUrl}/s/permissions`, 'GET', null, {
+      headers: {
+        Authorization: `Bearer ${this.accessToken}`,
+      }
+    })
+  }
+
+  async health() {
+    return jsonHttp(`${this._baseUrl}/health`, 'GET')
   }
 }
 
