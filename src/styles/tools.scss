@@ -158,6 +158,26 @@
   color: $primary-color;
 }
 
+.primary-background-color {
+  background-color: $primary-color;
+}
+
+.secondary-background-color {
+  background-color: $secondary-color;
+}
+
+.tertiary-background-color {
+  background-color: $tertiary-color;
+}
+
+.surface-background-color {
+  background-color: $surface-color;
+}
+
+.alternate-surface-background-color {
+  background-color: $alternate-surface-color;
+}
+
 .warning-font-color {
   color: $warning-color;
 }
@@ -168,6 +188,14 @@
 
 .neutral-background-color {
   background-color: $neutral-color;
+}
+
+.alternate-neutral-background-color {
+  background-color: $alternate-neutral-color;
+}
+
+.alternate-text-color {
+  color: $alternate-text-color;
 }
 
 .text-wrap {

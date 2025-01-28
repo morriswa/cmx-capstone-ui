@@ -10,13 +10,25 @@ $font-size-med: 16px;
 $font-size-large: 24px;
 
 
+// application color scheme
 $black: #000000;
 $white: #ffffff;
 $clear: #ffffff00;
 
-$primary-color: #a83624;
+$primary-color: #19297c;
+$secondary-color: #b97375;
+$tertiary-color: #ceb1be;
+
+$surface-color: #f1e4e8;
+$alternate-surface-color: #e2dcde;
+
 $neutral-color: #f3f3f3;
+$alternate-neutral-color: #262626;
+
+$text-color: $alternate-neutral-color;
+$alternate-text-color: $neutral-color;
+
 $warning-color: #d33e3e;
-$text-color: #262626;
+
 $background-color: $white;
 
