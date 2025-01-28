@@ -11,6 +11,7 @@ import {ServiceGuard} from "src/components/guards";
 import Home from "src/pages/home/Home.page";
 import Logout from "src/pages/logout/Logout.page";
 import Landing from "src/pages/landing/Landing.page";
+import {ColorPalette} from "src/pages/developer-tools.jsx";
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
     path: "/logout",
     element: <Logout />,
   },
+  // dev design config
+  {
+    id: "dev-colors",
+    index: true,
+    path: "/dev/colors",
+    element: <ColorPalette />
+  },
+
   // config for page layout of header/body/etc
   {
     id: "application",
