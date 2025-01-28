@@ -1,4 +1,3 @@
-import React from 'react';
 import './Layout.component.scss';
 import {Navigate, Outlet, useNavigation} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
@@ -45,14 +44,12 @@ function Layout() {
   return (
     <div className={"flex-row hfill wfill"}>
       <SidebarMenu />
-      <div className={"flex-col wfill p-1"}>
-        <div className="hfill scroll-y">
-          {state === 'loading' ?
-            <PageLoader />
-            :
-            <Outlet />
-          }
-        </div>
+      <div className={"flex-col hfill wfill scroll-y"}>
+        {state === 'loading' ?
+          <PageLoader />
+          :
+          <Outlet />
+        }
       </div>
     </div>
   )
