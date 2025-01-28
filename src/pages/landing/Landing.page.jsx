@@ -12,7 +12,11 @@ function Landing() {
 
     async function effect() {
       if (auth0.isLoading) return;
-      if (await auth0.getAccessTokenSilently()) nav("/app");
+      try {
+        if (await auth0.getAccessTokenSilently()) nav("/app");
+      } catch (e) {
+        console.debug('couldnt get token...', e);
+      }
     }
 
     effect().then()
@@ -28,7 +32,7 @@ function Landing() {
 
   return (
     <div className={"flex-col hfill wfill justify-content-center align-items-center"}>
-      <div className={"flex-row gap-1"}>
+      <div className={"flex-row gap-1 align-items-center"}>
         <div className={"flex-col"}>
           <h1>Hello KU Student!</h1>
         </div>
