@@ -8,6 +8,7 @@
     "build:local": "env-cmd -f environments/local.properties vite build --emptyOutDir",
     "build:prod": "env-cmd -f environments/production.properties vite build --emptyOutDir"
   },
+  "type": "module",
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "@testing-library/jest-dom": "^5.17.0",
