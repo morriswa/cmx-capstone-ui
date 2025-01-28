@@ -1,96 +1,35 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './Layout.component.scss';
-import {Outlet, useNavigate, useNavigation} from "react-router-dom";
+import {Navigate, Outlet, useNavigation} from "react-router-dom";
 import {useAuth0} from "@auth0/auth0-react";
-import usePermissions from "src/hooks/UsePermissions.hook";
 import PageLoader from "src/components/page-loader/PageLoader.component";
 import {DEFAULT_LOGOUT} from "src/config/auth0.config";
 
 
-function Menu({setMenuOpen}) {
+function SidebarMenu() {
 
-  const [token, setToken] = useState(null);
-
-  const navigate = useNavigate();
   const auth0 = useAuth0();
-  const {permissions} = usePermissions();
 
-  useEffect(() => {
-    async function effect() {
-
-      function _isExpired(token) {
-        const expiration_timestamp = token.exp;
-        if (expiration_timestamp) {
-          return (expiration_timestamp * 1000) < new Date().getTime();
-        } else {
-          throw new Error('failed to retrieve expiration time from token')
-        }
-      }
-
-      async function handleLogout() {
-        await auth0.logout(DEFAULT_LOGOUT)
-      }
-
-      const token = await auth0.getIdTokenClaims();
-
-      if (!token) {
-        setToken(null);
-        return
-      }
-
-      const isExpired = _isExpired(token);
-
-      if (isExpired) {
-        await handleLogout();
-      } else {
-        setToken(token);
-      }
-    }
-
-    effect().then(()=>{
-      console.debug('finished token handling');
-    });
-  }, [auth0, auth0.getIdTokenClaims]);
-
-  function handleNavigate(path) {
-    navigate(path);
-    setMenuOpen(false);
+  async function handleLogout() {
+    await auth0.logout(DEFAULT_LOGOUT)
   }
 
-  return <>
-    <button className="mobile-menu-link" onClick={() => handleNavigate('')}>Home</button>
-    {!auth0.isAuthenticated ?
-      <button className="mobile-menu-link" onClick={() => auth0.loginWithRedirect()}>Login</button>
-      :
-      // auth buttons
-      <>
-        <button className="mobile-menu-link" onClick={() => auth0.logout(DEFAULT_LOGOUT)}>
-          Logout
-        </button>
-      </>
-    }
-  </>
+  // TODO potentially flex this, need to extern variables...
+  return (<div className={"flex-col justify-content-space-between p-1 alternate-surface-background-color"} style={{width: "20vw", maxWidth: "500px"}}>
+    {/* Float top menu items*/}
+    <div className={"flex-col gap-1"}>
+      <h3>Application Name</h3>
+      <button className={"App-button secondary-outline"}>Menu item 1</button>
+      <button className={"App-button secondary-outline"}>Menu item 2</button>
+      <button className={"App-button"}>Menu item 3</button>
+    </div>
+
+    {/* Float bottom menu items*/}
+    <div className={"flex-col"}>
+      <button className={"App-button"} onClick={handleLogout}>Logout</button>
+    </div>
+  </div>)
 }
-
-
-function Header() {
-
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  return (
-    <header className="flex-col wfill stretch">
-      <button className="mobile-menu-link active" onClick={() => setMenuOpen(!menuOpen)}>
-        Menu
-      </button>
-      {menuOpen ?
-        <Menu setMenuOpen={setMenuOpen}/>
-        :
-        <></>
-      }
-    </header>
-  )
-}
-
 
 function Layout() {
 
@@ -101,17 +40,21 @@ function Layout() {
     return (<></>)
   }
 
+  if (!auth0.isAuthenticated) return <Navigate to={"/"}/>
+
   return (
-    <>
-      <Header/>
-      <div className="hfill scroll-y" style={{paddingBottom: '10vh'}}>
-        {state === 'loading' ?
-          <PageLoader />
-          :
-          <Outlet />
-        }
+    <div className={"flex-row hfill wfill"}>
+      <SidebarMenu />
+      <div className={"flex-col wfill p-1"}>
+        <div className="hfill scroll-y">
+          {state === 'loading' ?
+            <PageLoader />
+            :
+            <Outlet />
+          }
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

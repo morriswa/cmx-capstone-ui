@@ -1,6 +1,6 @@
 
 // libs
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, Navigate} from "react-router-dom";
 
 // components
 import Callback from "src/components/callback/Callback.component";
@@ -10,6 +10,7 @@ import {ServiceGuard} from "src/components/guards";
 // pages
 import Home from "src/pages/home/Home.page";
 import Logout from "src/pages/logout/Logout.page";
+import Landing from "src/pages/landing/Landing.page";
 
 
 const router = createBrowserRouter([
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
   // config for page layout of header/body/etc
   {
     id: "application",
-    path: "",
+    path: "/app",
     element: <ServiceGuard><Layout /></ServiceGuard>,
     children: [
       // pages with header
@@ -40,6 +41,19 @@ const router = createBrowserRouter([
         element: <Home />,
       },
     ],
+  },
+  // landing page
+  {
+    id: "landing",
+    index: true,
+    path: "",
+    element: <Landing />
+  },
+  // reroute all other traffic to landing page
+  {
+    id: "wild",
+    path: "*",
+    element: <Navigate to={""} />
   }
 ], {basename: import.meta.env.VITE_APP_BASENAME});
 
