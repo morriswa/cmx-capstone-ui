@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useAuth0} from "@auth0/auth0-react";
 import {useNavigate} from "react-router-dom";
+import BackgroundImage from "$/BackgroundImage.jpg";
 
 
 function Landing() {
@@ -31,16 +32,20 @@ function Landing() {
   }
 
   return (
-    <div className={"flex-col hfill wfill justify-content-center align-items-center"}>
-      <div className={"flex-row gap-1 align-items-center"}>
-        <div className={"flex-col"}>
-          <h1>Hello KU Student!</h1>
-        </div>
-        <div className={"flex-col"} style={{width: "300px"}}>
-          <button className={"App-button"} onClick={handleLogin}>Login</button>
+    <>
+      <img src={BackgroundImage} alt={"background"} className={"hfill wfill"} style={{objectFit: "cover", position: "fixed", zIndex: "10"}}/>
+      <div className={"flex-col hfill wfill justify-content-center align-items-center"} style={{zIndex: "20"}}>
+        <div className={"flex-row gap-2 align-items-center surface-background-color p-2"}>
+          <div className={"flex-col align-items-flex-end"}>
+            <h1>JayhawkAI</h1>
+            <h2><i>Welcome KU Students!</i></h2>
+          </div>
+          <div className={"flex-col"} style={{width: "300px"}}>
+            <button className={"App-button"} onClick={handleLogin}>Login</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

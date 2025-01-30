@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import {resolve} from "node:path";
 
 
 export default defineConfig({
@@ -16,7 +17,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'src': ''
+      '$': resolve('src/assets/'),
+      'src': resolve('src/'),
     }
   }
 })
