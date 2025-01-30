@@ -13,11 +13,7 @@ function SidebarMenu() {
   const client = useRestClient();
   const promptHistoryQ = useQuery({
     queryKey: ['history'],
-    queryFn: async ()=>{
-      const stuff =  (await client.getUserPromptHistory()).json();
-      console.log(stuff);
-      return stuff;
-    }
+    queryFn: async ()=> (await client.getUserPromptHistory()).json()
   })
 
   async function handleLogout() {
