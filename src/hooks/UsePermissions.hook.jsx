@@ -1,10 +1,10 @@
 import useRestClient from "./RestClient.hook";
-import {useQuery} from "react-query";
+import {useQuery} from "@tanstack/react-query";
 import {useAuth0} from "@auth0/auth0-react";
 import {useEffect, useState} from "react";
 
 
-function usePermissions() {
+function UsePermissions() {
 
   const [res, setRes] = useState({
     permissions: [],
@@ -13,9 +13,10 @@ function usePermissions() {
 
   const auth0 = useAuth0();
   const client = useRestClient();
-  const query = useQuery(['permissions'], async () => {
-    return (await client.getPermissions()).json()
-  })
+  const query = useQuery({
+    queryKey: ['permissions'],
+    queryFn: async () => (await client.getPermissions()).json()
+  });
 
   useEffect(() => {
     async function poll() {
@@ -43,4 +44,4 @@ function usePermissions() {
   return res;
 }
 
-export default usePermissions;
+export default UsePermissions;

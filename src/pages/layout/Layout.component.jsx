@@ -4,17 +4,20 @@ import {useAuth0} from "@auth0/auth0-react";
 import PageLoader from "src/components/page-loader/PageLoader.component.jsx";
 import {DEFAULT_LOGOUT} from "src/config/auth0.config.jsx";
 import useRestClient from "src/hooks/RestClient.hook.jsx";
-import {useQuery} from "react-query";
+import {useQuery} from "@tanstack/react-query";
 
 
 function SidebarMenu() {
 
   const auth0 = useAuth0();
   const client = useRestClient();
-  const promptHistoryQ = useQuery(['history'], async ()=>{
-    const stuff =  (await client.getUserPromptHistory()).json();
-    console.log(stuff);
-    return stuff;
+  const promptHistoryQ = useQuery({
+    queryKey: ['history'],
+    queryFn: async ()=>{
+      const stuff =  (await client.getUserPromptHistory()).json();
+      console.log(stuff);
+      return stuff;
+    }
   })
 
   async function handleLogout() {
