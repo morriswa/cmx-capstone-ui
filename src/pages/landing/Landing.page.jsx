@@ -40,8 +40,10 @@ function Landing() {
             <h1>JayhawkAI</h1>
             <h2><i>Welcome KU Students!</i></h2>
           </div>
-          <div className={"flex-col"} style={{width: "300px"}}>
+          <div className={"flex-col gap-1"} style={{width: "300px"}}>
             <button className={"App-button"} onClick={handleLogin}>Login</button>
+            <button className={"App-button secondary-outline"} onClick={handleLogin}>Sign Up</button>
+            {/*<button className={"App-button secondary-outline"}>About Us</button>*/}
           </div>
         </div>
       </div>

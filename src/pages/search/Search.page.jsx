@@ -1,14 +1,16 @@
-import './Home.page.scss';
+import './Search.page.scss';
 import {useState} from "react";
+import useRestClient from "src/hooks/RestClient.hook.jsx";
 
 
-function Home() {
+function Search() {
+
+  const client = useRestClient();
 
   const [promptForm, setPromptForm] = useState('');
-  const [searchHistory, setSearchHistory] = useState([])
 
-  function handleGo() {
-    setSearchHistory([promptForm, ...searchHistory]);
+  async function handleGo() {
+    await client.search(promptForm);
     setPromptForm('');
   }
 
@@ -21,11 +23,6 @@ function Home() {
     <h1>Hello Secure React World!</h1>
     </div>
 
-
-    <h2>Search History</h2>
-    <div className={"flex-col gap-1"}>
-      {searchHistory.toReversed().map((item, index) => <h3 key={item+index}>{item}</h3>)}
-    </div>
     <div className={"flex-row wfill gap-1"}>
       <input className={"App-input wfill"} type={"text"} placeholder={"Get started..."}
              value={promptForm}
@@ -36,4 +33,4 @@ function Home() {
   </div>)
 }
 
-export default Home;
+export default Search;

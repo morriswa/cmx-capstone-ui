@@ -50,6 +50,32 @@ class RestClient {
   async health() {
     return jsonHttp(`${this._baseUrl}/health`, 'GET')
   }
+
+  async getUserPromptHistory() {
+    return {
+      json : ()=> [
+        {
+          chat_id: 1,
+          prompt_text: 'prompt text 1',
+          date_created: new Date()
+        },
+        {
+          chat_id: 2,
+          prompt_text: 'prompt text 2',
+          date_created: new Date()
+        },
+        {
+          chat_id: 3,
+          prompt_text: 'prompt text 3',
+          date_created: new Date()
+        }
+      ]
+    }
+  }
+
+  async search(promptText) {
+    return
+  }
 }
 
 const useRestClient = () => {

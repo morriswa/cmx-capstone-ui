@@ -4,14 +4,14 @@ import {createBrowserRouter, Navigate} from "react-router-dom";
 
 // components
 import Callback from "src/components/callback/Callback.component";
-import Layout from "src/components/layout/Layout.component";
-import {ServiceGuard} from "src/components/guards";
+import {AuthGuard} from "src/components/guards";
 
 // pages
-import Home from "src/pages/home/Home.page";
+import Layout from "src/pages/layout/Layout.component";
 import Logout from "src/pages/logout/Logout.page";
 import Landing from "src/pages/landing/Landing.page";
 import {ColorPalette} from "src/pages/developer-tools.jsx";
+import Search from "src/pages/search/Search.page.jsx";
 
 
 const router = createBrowserRouter([
@@ -40,14 +40,14 @@ const router = createBrowserRouter([
   {
     id: "application",
     path: "/app",
-    element: <ServiceGuard><Layout /></ServiceGuard>,
+    element: <AuthGuard><Layout /></AuthGuard>,
     children: [
       // pages with header
       {
         id: "home",
         index: true,
         path: "",
-        element: <Home />,
+        element: <Search />,
       },
     ],
   },
