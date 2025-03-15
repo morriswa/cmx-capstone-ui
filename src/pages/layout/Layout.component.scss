@@ -1,22 +1,24 @@
 @use "src/styles/variables" as *;
 
-
+//Styles the layout components
 .mobile-menu-link {
-  background-color: $neutral-color;
-  color: $black;
-  font-weight: bold;
-  padding: 16px;
-  text-decoration: none;
-  font-size: $font-size-med;
-  border: none;
-  outline: none;
-  width: 100%;
+  background-color: $neutral-color; //Background colo
+  color: $black; //Text color
+  font-weight: bold; //Font weight
+  padding: 16px; //size of padding
+  text-decoration: none; //Text decoration
+  font-size: $font-size-med; //Font size medium
+  border: none; //No border
+  outline: none;//No outline
+  width: 100%;//Width 100%
 
+  //When the link is active
   &.active {
     background-color: $primary-color;
     color: $white;
   }
 
+  //When the link is hovered
   &:hover {
     color: $white;
     background-color: $text-color;

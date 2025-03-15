@@ -1,3 +1,6 @@
+/*
+  This function help define the color pallete for different propertues used in the application
+*/
 
 export function ColorPalette() {
   return (<>
