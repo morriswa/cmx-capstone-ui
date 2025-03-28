@@ -1,0 +1,44 @@
+name: Build and Publish with Docker
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - uses: aws-actions/configure-aws-credentials@v4.0.2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Build, Test
+      run: |
+        npm ci
+        npm run test
+        npm run build:www
+
+    - name: Publish
+      run: |
+        export PACKAGE_VERSION=$(./package-version.sh)
+
+        cd ./dist
+        tar -czvf cmx-capstone-dist.tar.gz ./cmx-capstone
+        export ASSET_SHA256=$(sha256sum cmx-capstone-dist.tar.gz | awk '{print $1;}')
+        aws codeartifact publish-package-version \
+          --domain morriswa-org --repository morriswa-central \
+          --format generic --namespace org.morriswa --package cmx-capstone-dist \
+          --package-version "$PACKAGE_VERSION" \
+          --asset-content cmx-capstone-dist.tar.gz \
+          --asset-name cmx-capstone-dist.tar.gz \
+          --asset-sha256 "$ASSET_SHA256" --unfinished
