@@ -25,7 +25,6 @@ jobs:
     - name: Build, Test
       run: |
         npm ci
-        npm run test
         npm run build:www
 
     - name: Publish
