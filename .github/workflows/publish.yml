@@ -31,7 +31,6 @@ jobs:
       run: |
         export PACKAGE_VERSION=$(./package-version.sh)
 
-        cd ./dist
         tar -czvf cmx-capstone-dist.tar.gz ./cmx-capstone
         export ASSET_SHA256=$(sha256sum cmx-capstone-dist.tar.gz | awk '{print $1;}')
         aws codeartifact publish-package-version \
