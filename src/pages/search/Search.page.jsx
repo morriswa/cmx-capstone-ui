@@ -11,7 +11,7 @@ function Search() {
 
   //Function to handle the search action
   async function handleGo() {
-    await client.search(promptForm); //Make the search API call
+    await client.createNewChat(promptForm); //Make the search API call
     setPromptForm('');//Resets the prompt form
   }
   //Fucnton to update the promp event

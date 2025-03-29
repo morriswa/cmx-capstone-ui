@@ -42,7 +42,7 @@ class RestClient {
   async getPermissions() {
     return jsonHttp(`${this._baseUrl}/s/permissions`, 'GET', null, {
       headers: {
-        Authorization: `Bearer ${this.accessToken}`,
+        Authorization: `Bearer ${await this.accessToken}`,
       }
     })
   }
@@ -52,29 +52,27 @@ class RestClient {
   }
 
   async getUserPromptHistory() {
-    return {
-      json : ()=> [
-        {
-          chat_id: 1,
-          prompt_text: 'prompt text 1',
-          date_created: new Date()
-        },
-        {
-          chat_id: 2,
-          prompt_text: 'prompt text 2',
-          date_created: new Date()
-        },
-        {
-          chat_id: 3,
-          prompt_text: 'prompt text 3',
-          date_created: new Date()
-        }
-      ]
-    }
+    return jsonHttp(`${this._baseUrl}/s/history`, 'GET', null, {
+      headers: {
+        Authorization: `Bearer ${await this.accessToken}`,
+      }
+    })
   }
 
-  async search(promptText) {
-    return
+  async getChatLog(chatId) {
+    return jsonHttp(`${this._baseUrl}/s/chat/${chatId}`, 'GET', null, {
+      headers: {
+        Authorization: `Bearer ${await this.accessToken}`,
+      }
+    })
+  }
+
+  async createNewChat(promptText) {
+    return jsonHttp(`${this._baseUrl}/s/chat`, 'POST', {'promptText': promptText}, {
+      headers: {
+        Authorization: `Bearer ${await this.accessToken}`,
+      }
+    })
   }
 }
 
