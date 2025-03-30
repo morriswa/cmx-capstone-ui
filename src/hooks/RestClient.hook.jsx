@@ -81,15 +81,9 @@ class RestClient {
 
 
   async createNewChat(promptText) {
-    return jsonHttp(
-      `${this._baseUrl}/s/chat`,
-      'POST',
-      { 'prompt_text': promptText },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${await this.accessToken}`,
-        }
+    return jsonHttp(`${this._baseUrl}/s/chat`, 'POST', {'promptText': promptText}, {
+      headers: {
+        Authorization: `Bearer ${await this.accessToken}`,
       }
     );
   }
