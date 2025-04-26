@@ -1,5 +1,8 @@
 import './Search.page.scss';
 import {useState} from "react";
+import blob from "$/blob1.svg";
+import blob2 from "$/blob2.svg";
+import stars from "$/logo.svg";
 import useRestClient from "src/hooks/RestClient.hook.jsx";
 
 
@@ -13,7 +16,7 @@ function Search() {
   // Function to handle the search action
   async function handleGo() {
     if (!promptForm.trim()) return; // Don't submit empty prompts
-   
+
     try {
       setIsLoading(true);
       const response = await client.createNewChat(promptForm); // Make the search API call
@@ -43,31 +46,45 @@ function Search() {
 
 
   return (
-    <div className={"flex-col hfill p-1 justify-content-space-between"}>
-      <div>
-        <h1>Hello Secure React World!</h1> {/*Title*/}
-      </div>
 
+    <div className="search-page-wrapper">
+      <img className="blob" src={blob}></img>
+      <img className="blob2" src={blob2}></img>
+
+    <div className={"flex-col hfill p-1 justify-content-space-between"}>
+      <div className="title">
+        <img className="stars" src={stars}></img>
+        <h1> Ask your AI advisor anything</h1> {/*Title*/}
+      </div>
 
       <div className={"flex-row wfill gap-1"}>
         {/*Input field to get the search*/}
-        <input
-          className={"App-input wfill"}
-          type={"text"}
-          placeholder={"Get started..."}
-          value={promptForm}
-          onChange={updatePromptEvent}
-          onKeyPress={handleKeyPress}
-          disabled={isLoading}
-        />
-        {/*Button to search*/}
-        <button
-          className={"App-button"}
-          onClick={handleGo}
-          disabled={isLoading || !promptForm.trim()}
-        >
-          {isLoading ? "Loading..." : "Go"}
-        </button>
+
+        <div className="search-container">
+          <div className="search-inner">
+
+            <input
+              className={"App-input "}
+              style={{ width: "50vw", padding: "8px", display: "block", marginLeft: "16px", border: "1.5px solid #160211", opacity: 0.3}}
+              type={"text"}
+              placeholder={"Get started..."}
+              value={promptForm}
+              onChange={updatePromptEvent}
+              onKeyPress={handleKeyPress}
+              disabled={isLoading}
+            />
+            {/*Button to search*/}
+            <button
+              className={"App-button"}
+              onClick={handleGo}
+              disabled={isLoading || !promptForm.trim()}
+            >
+              {isLoading ? "Loading..." : "Go"}
+            </button>
+
+            </div>
+          </div>
+
       </div>
 
 
@@ -92,6 +109,8 @@ function Search() {
           </div>
         </div>
       )}
+    </div>
+
     </div>
   );
 }

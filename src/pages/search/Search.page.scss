@@ -13,3 +13,83 @@
   align-items: center;
 }
 
+.search-container {
+  margin-left: 16px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 16px); // -16px is accounting for the menu side bar
+}
+
+.search-inner {
+  display: flex;
+  gap: 1rem;
+  width: 66%;
+}
+
+.title {
+  margin-left: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px; // this puts ask your advisor at the center of my screen
+  margin-top: 2rem;
+  width: calc(100% - 16px); // -16px is accounting for the menu side bar
+}
+
+.icon {
+  width: 150px;
+  height: 150px;
+  position: absolute; // optional if you want to place it freely
+  top: 0;
+  left: 0;
+  z-index: -1; // optional, sends it to the background
+}
+
+.search-page-wrapper {
+  position: relative;
+  overflow: hidden; // this is key
+  min-height: 100vh; // ensures it fills full screen height
+  z-index: 2;
+}
+
+.blob {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 40vw; // or whatever size fits
+  z-index: -1;  // push it behind all content
+  pointer-events: none; // prevents it from blocking clicks
+}
+
+.blob2 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 40vw; // or whatever size fits
+  z-index: -1;  // push it behind all content
+  pointer-events: none; // prevents it from blocking clicks
+}
+
+.App-input::placeholder {
+  color: #160211;        // Change color
+  font-size: 16px;    // Change size
+  font-weight: 100;   // Make it bolder
+  opacity: 1;         // Override faded default
+  font-family: 'Manrope', sans-serif;
+}
+
+
+h1 {
+  color: #160211;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 100;
+}
+
+.App-button {
+  background-color: white;
+  color: #160211;        // Change color
+  font-size: 16px;
+  border: 1.5px solid #160211;
+  opacity: 0.7;
+}
