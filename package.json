@@ -1,6 +1,6 @@
 {
   "name": "cmx-capstone-ui",
-  "version": "0.0.4.dev1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "env-cmd -f environments/local.properties vite",
