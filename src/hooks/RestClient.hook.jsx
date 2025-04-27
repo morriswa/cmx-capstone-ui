@@ -71,6 +71,7 @@ class RestClient {
     return jsonHttp(`${this._baseUrl}/s/chat`, 'POST', {'prompt_text': promptText}, {
       headers: {
         Authorization: `Bearer ${await this.accessToken}`,
+        "Content-Type": "application/json",
       }
     })
   }
@@ -79,6 +80,8 @@ class RestClient {
     return jsonHttp(`${this._baseUrl}/s/chat/${chatId}`, 'POST', {'prompt_text': promptText}, {
       headers: {
         Authorization: `Bearer ${await this.accessToken}`,
+        "Content-Type": "application/json",
+
       }
     })
   }
